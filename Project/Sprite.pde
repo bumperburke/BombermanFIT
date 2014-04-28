@@ -1,7 +1,14 @@
 class Sprite
 {
-  PVector position = new PVector(55, 105);
+  PVector position;
+  PVector centre;
   float speed = 5.0f;
+  
+  Sprite()
+  {
+     position = new PVector(55, 105); 
+     centre = new PVector(position.x + 20, position.y + 20);
+  }
 
   void draw()
   {
@@ -91,11 +98,11 @@ class Sprite
     popMatrix();
   }
 
-  void checkVerticle()
+  void checkVerticle()//this helped me overcome a huge obstacle
   {
-    for (int i = 75; i < 775; i += 100)
+    for (int i = 75; i < 775; i += 100)//this makes sure the sprite is on a track and can only move down if it is at a gap where it can move verticle
     {
-      if (sprite.position.x + 20 == i)
+      if (sprite.position.x + 20 == i) //change the position from the top corner to the centre. should have used RECTMODE(CENTER) from start
       {
         moveVerticle = true;
         return;
@@ -108,7 +115,7 @@ class Sprite
     }
   }
 
-  void checkHorizontal()
+  void checkHorizontal()//same principle as moveVerticle
   {
     for (int i = 125; i < 725; i += 100)
     {
@@ -128,7 +135,7 @@ class Sprite
 
   void moveLeft()
   {
-    if (position.x <= map.cellWidth + 5)
+    if (position.x <= map.cellWidth + 5)//if the sprite hits the very left wall do nothing. thus stopping him from leaving map
     {
     }
 
@@ -140,9 +147,10 @@ class Sprite
 
   void moveRight()
   {
-    if (position.x > width - 100)
+    if (position.x > width - 100)//same as move left first if except for far right wall
     {
     }
+    
     else if (moveHorizontal == true)
     {
       position.x += speed;
@@ -151,7 +159,7 @@ class Sprite
 
   void moveUp()
   {
-    if (position.y < 110)
+    if (position.y < 110)//detection for top wall
     {
     }
     else if (moveVerticle == true)
@@ -162,7 +170,7 @@ class Sprite
 
   void moveDown()
   {
-    if (position.y > height - map.cellHeight - 50)
+    if (position.y > height - map.cellHeight - 50)//detection for bottom wall
     {
     }
     else if (moveVerticle == true)
@@ -173,3 +181,4 @@ class Sprite
 }
 
 //© Stefan Burke DT228 Dublin Institute of Technology
+

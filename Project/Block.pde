@@ -4,9 +4,9 @@ class Block
   int blockLenght = 50;
   PVector position;
 
-  Block(int posx, int posy)
+  Block(float posx, float posy)
   {
-    position = new PVector(px, py);
+    position = new PVector(posx, posy);
   }
 
   void draw()
